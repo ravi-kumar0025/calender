@@ -1,5 +1,12 @@
-import { GreatThings, Thursday } from 'moving-letters'
 import { MONTH_NAMES } from '../../utils/calendar'
+
+function GreatThings({ text }) {
+  return <h1>{text}</h1>
+}
+
+function Thursday({ text }) {
+  return <h1>{text}</h1>
+}
 
 export function AnimatedMonthHeading({ currentMonth }) {
   const monthName = MONTH_NAMES[currentMonth.getMonth()]

@@ -461,7 +461,12 @@
     color: #94a3b8 !important;
   }
 
+  .theme-dark .notes-head p,
   .theme-dark .notes-count,
+  .theme-dark .note-card__title {
+    color: #f8fafc !important;
+  }
+
   .theme-dark .notes-badge,
   .theme-dark .note-card__hint {
     color: #cbd5e1 !important;

@@ -52,10 +52,8 @@ This makes the project easier to read, update, and debug.
 
 - `granim`
   Used for the animated gradient background.
-- `moving-letters`
-  Used for animated month and year text.
-- `animejs`
-  Installed because `moving-letters` is built on top of it.
+
+The month and year heading animation is handled with lightweight local React markup and CSS, so there is no extra animation package tied to old React versions.
 
 ### Linting / Dev Tools
 
@@ -125,6 +123,35 @@ npm run preview
 ```bash
 npm run lint
 ```
+
+## Deploy On Vercel
+
+### 1. Push the project to GitHub
+
+Make sure your latest code is committed and pushed to your repo.
+
+### 2. Import the repo into Vercel
+
+- Open Vercel
+- Click `Add New Project`
+- Import your GitHub repository
+
+### 3. Use these project settings
+
+- Framework preset: `Vite`
+- Install command: `npm install`
+- Build command: `npm run build`
+- Output directory: `dist`
+
+### 4. Deploy
+
+Vercel should detect the app correctly and build it as a static frontend.
+
+## Vercel Notes
+
+- No environment variables are required for this project.
+- Local storage is used in the browser for notes, theme state, and uploaded images.
+- The React-incompatible `moving-letters` dependency was removed so Vercel installs can complete normally.
 
 ## Main Design Choices
 
