@@ -1,0 +1,158 @@
+@keyframes swingInRight {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(-18deg) rotateZ(1.2deg) translateX(32px) scale(0.98);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes swingInLeft {
+  0% {
+    opacity: 0;
+    transform: perspective(1200px) rotateY(18deg) rotateZ(-1.2deg) translateX(-32px) scale(0.98);
+    filter: blur(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: perspective(1200px) rotateY(0deg) translateX(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes focusInExpand {
+  0% {
+    letter-spacing: -0.4em;
+    filter: blur(12px);
+    opacity: 0;
+  }
+
+  100% {
+    letter-spacing: 0;
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+@keyframes swingHeroRight {
+  0% {
+    opacity: 0;
+    transform: rotate(-3deg) scale(0.97) translateY(12px);
+    filter: blur(10px);
+  }
+
+  55% {
+    opacity: 1;
+    transform: rotate(1.4deg) scale(1.01) translateY(-4px);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes swingHeroLeft {
+  0% {
+    opacity: 0;
+    transform: rotate(3deg) scale(0.97) translateY(12px);
+    filter: blur(10px);
+  }
+
+  55% {
+    opacity: 1;
+    transform: rotate(-1.4deg) scale(1.01) translateY(-4px);
+    filter: blur(0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(0deg) scale(1) translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes floatOrb {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0) scale(1.04);
+  }
+}
+
+@keyframes loaderPulse {
+  0%,
+  100% {
+    transform: scale(0.75);
+    opacity: 0.65;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes buttonSheen {
+  0% {
+    transform: rotate(18deg) translateX(-180%);
+  }
+
+  100% {
+    transform: rotate(18deg) translateX(420%);
+  }
+}
+
+.animate-swing-in-right {
+  animation: swingInRight 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-swing-in-left {
+  animation: swingInLeft 0.78s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-swing-hero-right {
+  animation: swingHeroRight 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-swing-hero-left {
+  animation: swingHeroLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.animate-focus-in {
+  animation: focusInExpand 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  body,
+  .app-shell {
+    background: white !important;
+  }
+
+  .ambient-orb,
+  canvas,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  .paper-card,
+  .paper-sheet {
+    box-shadow: none !important;
+  }
+}

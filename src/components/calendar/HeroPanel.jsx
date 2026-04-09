@@ -1,15 +1,17 @@
 import { MONTH_NAMES } from '../../utils/calendar'
 
-export function HeroPanel({ art, currentMonth, rangeLabel }) {
+export function HeroPanel({ art, currentMonth, rangeLabel, motionClass }) {
   return (
-    <aside className="relative min-h-full overflow-hidden rounded-[1.8rem] bg-slate-950 text-white shadow-[0_28px_70px_rgba(15,23,42,0.22)]">
+    <aside
+      className={`relative min-h-full overflow-hidden rounded-[1.8rem] bg-slate-950 text-white shadow-[0_28px_70px_rgba(15,23,42,0.22)] ${motionClass ?? ''}`}
+    >
       <div className="absolute right-5 top-5 h-16 w-16 rounded-full border-t-4 border-r-4 border-white/90" />
 
       <div className="relative aspect-[4/5] min-h-[20rem] lg:min-h-[24rem]">
         <img
           src={art.url}
           alt={`${MONTH_NAMES[currentMonth.getMonth()]} cover artwork`}
-          className="h-full w-full object-cover object-center"
+          className="hero-image-swing h-full w-full object-cover object-center"
         />
       </div>
 

@@ -1,0 +1,188 @@
+@layer components {
+  .app-shell {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, hsl(var(--calendar-hue) 100% 67% / 0.22), transparent 28%),
+      radial-gradient(circle at 84% 14%, hsl(calc(var(--calendar-hue) + 86) 85% 62% / 0.2), transparent 24%),
+      radial-gradient(circle at 50% 100%, hsl(calc(var(--calendar-hue) + 28) 96% 74% / 0.12), transparent 22%),
+      linear-gradient(
+        180deg,
+        hsl(var(--calendar-hue) 62% 97% / 0.88),
+        hsl(calc(var(--calendar-hue) + 8) 36% 92% / 0.94)
+      );
+  }
+
+  .theme-dark {
+    background:
+      /* Electric purple — top left */
+      radial-gradient(ellipse 55% 40% at 4% 2%,   hsl(270 90% 58% / 0.42), transparent 60%),
+      /* Hot cyan — top right */
+      radial-gradient(ellipse 45% 35% at 96% 6%,  hsl(186 95% 52% / 0.38), transparent 55%),
+      /* Neon magenta — upper center */
+      radial-gradient(ellipse 40% 28% at 55% 12%,  hsl(320 90% 58% / 0.30), transparent 55%),
+      /* Deep cobalt blue — mid left */
+      radial-gradient(ellipse 50% 38% at 2% 52%,  hsl(228 88% 58% / 0.35), transparent 60%),
+      /* Vivid teal — mid right */
+      radial-gradient(ellipse 42% 32% at 98% 55%, hsl(172 85% 48% / 0.32), transparent 58%),
+      /* Hot orange-red — lower left */
+      radial-gradient(ellipse 38% 30% at 15% 92%, hsl(14 90% 58% / 0.28), transparent 55%),
+      /* Violet-pink — lower right */
+      radial-gradient(ellipse 48% 35% at 88% 94%, hsl(295 88% 60% / 0.34), transparent 58%),
+      /* Bright indigo — center bottom */
+      radial-gradient(ellipse 55% 30% at 50% 100%, hsl(245 92% 62% / 0.26), transparent 60%),
+      /* Pure black base */
+      linear-gradient(145deg, #020408 0%, #040810 35%, #060b16 65%, #08101e 100%);
+  }
+
+  /* Specific override for the Toolbar section the user wanted multicoloured */
+  .theme-dark .glass-toolbar {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: linear-gradient(160deg, rgba(20, 15, 30, 0.85), rgba(10, 15, 25, 0.95));
+    box-shadow: 
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      inset 1px 0 0 rgba(255, 255, 255, 0.05),
+      0 10px 40px -10px rgba(0, 0, 0, 0.5),
+      0 0 20px -5px hsl(320 100% 50% / 0.15),
+      0 0 30px -5px hsl(186 100% 50% / 0.15);
+    position: relative;
+  }
+  
+  /* Add a glossy multicolor top edge to the toolbar */
+  .theme-dark .glass-toolbar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, hsl(320 90% 60%), hsl(245 92% 62%), hsl(186 95% 52%));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  .theme-dark .paper-card,
+  .theme-dark .paper-sheet,
+  .theme-dark .notes-box,
+  .theme-dark .notes-editor,
+  .theme-dark .range-box,
+  .theme-dark .field-box,
+  .theme-dark .link-box,
+  .theme-dark .note-card,
+  .theme-dark .notes-empty,
+  .theme-dark .note-modal-card {
+    border-color: rgba(148, 163, 184, 0.2);
+    background-color: rgba(8, 15, 28, 0.84);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+      0 24px 60px rgba(2, 6, 23, 0.34);
+  }
+
+  .theme-dark .slider-box--off {
+    border-color: rgba(148, 163, 184, 0.2);
+    background-color: rgba(8, 15, 28, 0.84);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+      0 24px 60px rgba(2, 6, 23, 0.34);
+    background-image: none;
+  }
+
+  .theme-dark .field-box input,
+  .theme-dark .field-box textarea {
+    border-color: rgba(148, 163, 184, 0.18);
+    background: rgba(15, 23, 42, 0.74);
+    color: #e5eefb;
+  }
+
+  .theme-dark .field-box input::placeholder,
+  .theme-dark .field-box textarea::placeholder {
+    color: #94a3b8;
+  }
+
+  .theme-dark .day-cell {
+    border-color: rgba(148, 163, 184, 0.15);
+    background: rgba(7, 14, 26, 0.82);
+    color: #e2e8f0;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  }
+
+  .theme-dark .day-cell--today {
+    border-color: rgba(148, 163, 184, 0.38);
+  }
+
+  .theme-dark .day-cell--range {
+    background: rgba(89, 116, 179, 0.35);
+    color: #f8fafc;
+  }
+
+  .theme-dark .control-chip--ghost {
+    @apply border-slate-600 bg-slate-900/80 text-slate-100 shadow-[0_14px_28px_rgba(15,23,42,0.22)];
+  }
+
+  .theme-dark .control-chip--solid {
+    @apply border-slate-500 bg-slate-300 text-slate-950 shadow-[0_16px_30px_rgba(2,6,23,0.24)];
+  }
+
+  .theme-dark .control-chip--danger {
+    @apply border-rose-500/40 bg-rose-950/40 text-rose-100 shadow-[0_14px_26px_rgba(2,6,23,0.22)];
+  }
+
+  .theme-dark .control-chip--motion:hover:not(:disabled).control-chip--ghost {
+    @apply border-slate-500 bg-slate-800 text-slate-50;
+    box-shadow: 0 18px 34px rgba(15, 23, 42, 0.28);
+    filter: none;
+  }
+
+  .theme-dark .control-chip--motion:hover:not(:disabled).control-chip--solid {
+    @apply border-slate-400 bg-slate-200 text-slate-950;
+    box-shadow: 0 18px 34px rgba(2, 6, 23, 0.28);
+    filter: none;
+  }
+
+  .theme-dark .control-chip--motion:hover:not(:disabled).control-chip--danger {
+    @apply border-rose-400/60 bg-rose-900/60 text-rose-50;
+    box-shadow: 0 18px 34px rgba(244, 63, 94, 0.22);
+    filter: none;
+  }
+
+  .theme-dark .text-slate-900 {
+    color: #f8fafc !important;
+  }
+
+  .theme-dark .text-slate-800 {
+    color: #e2e8f0 !important;
+  }
+
+  .theme-dark .text-slate-600,
+  .theme-dark .text-slate-500,
+  .theme-dark .text-slate-400,
+  .theme-dark .text-slate-300 {
+    color: #94a3b8 !important;
+  }
+
+  .theme-dark .moving-title h1 {
+    color: #f8fafc !important;
+  }
+
+  .theme-dark .moving-year h1 {
+    color: #94a3b8 !important;
+  }
+
+  .theme-dark .notes-head p,
+  .theme-dark .notes-count,
+  .theme-dark .note-card__title {
+    color: #f8fafc !important;
+  }
+
+  .theme-dark .notes-badge,
+  .theme-dark .note-card__hint {
+    color: #cbd5e1 !important;
+  }
+
+  .theme-dark .theme-toggle {
+    @apply border-slate-700 bg-slate-900/90 text-slate-100 shadow-[0_16px_32px_rgba(2,6,23,0.38)];
+  }
+}

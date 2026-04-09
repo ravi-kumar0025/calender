@@ -8,33 +8,10 @@ import { TopBar } from './components/calendar/TopBar'
 import { BinderRings } from './components/calendar/BinderRings'
 import { AnimatedGradientCanvas } from './components/shared/AnimatedGradientCanvas'
 import { Button } from './components/shared/Button'
-import { HERO_ART } from './data/heroArt'
 import { useCalendarState } from './hooks/useCalendarState'
 import { useLocalStorage } from './hooks/useLocalStorage'
+import { getCoverArt, getHeroClass, getSheetClass, getThemeStyle } from './utils/appTheme'
 import { formatRangeLabel } from './utils/calendar'
-
-function getCoverArt(monthDate, image) {
-  const defaultArt = HERO_ART[monthDate.getMonth()]
-
-  if (!image) {
-    return defaultArt
-  }
-
-  return {
-    url: image,
-    eyebrow: 'Custom Artwork',
-    caption: 'Your uploaded image fits automatically into the calendar layout.',
-  }
-}
-
-function getThemeStyle(hue) {
-  return {
-    '--calendar-hue': hue,
-    '--accent': `hsl(${hue} 76% 53%)`,
-    '--accent-soft': `hsl(${hue} 88% 95%)`,
-    '--accent-deep': `hsl(${hue} 56% 24%)`,
-  }
-}
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useLocalStorage('wall-calendar-dark-mode', false)
@@ -75,10 +52,9 @@ function App() {
 
   const coverArt = getCoverArt(currentMonth, image)
   const rangeText = formatRangeLabel(range.start, range.end)
-  const sheetClass =
-    direction > 0
-      ? 'paper-sheet relative overflow-hidden animate-tilt-in-right'
-      : 'paper-sheet relative overflow-hidden animate-tilt-in-left'
+  const rootClassName = isDarkMode ? 'app-shell theme-dark' : 'app-shell'
+  const sheetClass = getSheetClass(direction)
+  const heroClass = getHeroClass(direction)
 
   function toggleTheme() {
     setIsDarkMode((oldValue) => {
@@ -93,13 +69,11 @@ function App() {
   }
 
   return (
-    <div
-      className={isDarkMode ? 'app-shell theme-dark' : 'app-shell'}
-      style={getThemeStyle(themeHue)}
-    >
+    <div className={rootClassName} style={getThemeStyle(themeHue)}>
       <AnimatedGradientCanvas hue={themeHue} />
       <div className="ambient-orb ambient-orb--left" />
       <div className="ambient-orb ambient-orb--right" />
+      <div className="ambient-orb ambient-orb--mid" />
 
       <main className="relative mx-auto flex min-h-screen w-full max-w-7xl flex-col px-4 py-6 sm:px-6 lg:px-8">
         <TopBar
@@ -123,7 +97,12 @@ function App() {
           <BinderRings />
 
           <div className="grid gap-4 lg:grid-cols-[minmax(320px,0.96fr)_minmax(420px,1.14fr)]">
-            <HeroPanel art={coverArt} currentMonth={currentMonth} rangeLabel={rangeText} />
+            <HeroPanel
+              art={coverArt}
+              currentMonth={currentMonth}
+              motionClass={heroClass}
+              rangeLabel={rangeText}
+            />
 
             <div key={`${monthText}-${animKey}`} className={sheetClass}>
               {isTurning ? (

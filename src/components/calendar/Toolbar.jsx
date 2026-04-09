@@ -1,4 +1,5 @@
 import { Button } from '../shared/Button'
+import { getButtonClassName } from '../../utils/buttonStyles'
 
 export function Toolbar({
   backgroundHue,
@@ -9,26 +10,31 @@ export function Toolbar({
   onImageUpload,
   onResetImage,
 }) {
+  const hueText = isDarkMode
+    ? 'Hue controls work only in light mode.'
+    : 'The background shifts with this slider.'
+
+  const uploadButtonClass = getButtonClassName(
+    'ghost',
+    !isEditMode ? 'cursor-not-allowed opacity-40' : '',
+  )
+
   return (
     <section className="mb-4 grid gap-4 print:hidden md:grid-cols-2">
       <div className="glass-toolbar flex flex-col gap-4 p-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-sm font-semibold text-slate-900">Background hue</p>
-          <p className="text-xs text-slate-500">
-            {isDarkMode
-              ? 'Hue controls work only in light mode.'
-              : 'The background shifts with this slider.'}
-          </p>
+          <p className="text-xs text-slate-500">{hueText}</p>
         </div>
 
         {isDarkMode ? (
-          <div className="slider-box slider-box--off sm:w-[20rem]">
+          <div className="slider-box slider-box--off w-full sm:w-[20rem]">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
               Light mode only
             </span>
           </div>
         ) : (
-          <div className="slider-box sm:w-[20rem]">
+          <div className="slider-box w-full sm:w-[20rem]">
             <input
               type="range"
               min="0"
@@ -54,11 +60,7 @@ export function Toolbar({
         </div>
 
         <div className="flex flex-wrap gap-3">
-          <label
-            className={`control-chip control-chip--motion control-chip--ghost ${
-              !isEditMode ? 'cursor-not-allowed opacity-40' : ''
-            }`}
-          >
+          <label className={uploadButtonClass}>
             <span className="relative z-[1]">Change Image</span>
             <input
               type="file"

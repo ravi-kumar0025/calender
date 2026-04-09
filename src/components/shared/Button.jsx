@@ -1,10 +1,4 @@
-import { cn } from '../../utils/cn'
-
-const variants = {
-  danger: 'control-chip control-chip--danger',
-  ghost: 'control-chip control-chip--ghost',
-  solid: 'control-chip control-chip--solid',
-}
+import { getButtonClassName } from '../../utils/buttonStyles'
 
 export function Button({
   children,
@@ -16,7 +10,7 @@ export function Button({
   return (
     <button
       type={type}
-      className={cn(variants[variant], 'control-chip--motion', className)}
+      className={getButtonClassName(variant, className)}
       {...props}
     >
       <span className="relative z-[1]">{children}</span>

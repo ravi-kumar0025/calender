@@ -19,27 +19,31 @@ function SunIcon() {
 
 export function TopBar({ isDarkMode, isEditMode, onToggleDarkMode, onToggleEdit }) {
   return (
-    <section className="mb-5 flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between print:hidden">
-      <div className="animate__animated animate__fadeInDown">
-        <p className="text-xs font-semibold uppercase tracking-[0.3em] text-slate-600">
+    <section className="mb-5 flex flex-col gap-4 print:hidden lg:flex-row lg:items-start lg:justify-between">
+      <div className="animate__animated animate__fadeInDown max-w-2xl">
+        <p className="text-xs font-semibold uppercase tracking-[0.38em] text-slate-600 sm:text-sm">
           Wall Planner Studio
         </p>
-        <h1 className="mt-2 max-w-3xl font-serif text-4xl leading-[0.95] text-slate-900 sm:text-5xl">
-          A cinematic monthly planner with tactile motion, editable notes, and a calm wall-calendar layout
+        <h1 className="mt-2 max-w-3xl font-serif text-3xl leading-[0.98] text-slate-900 sm:text-4xl lg:text-5xl">
+          Monthly planner with motion, notes, and a wall-calendar feel
         </h1>
       </div>
 
-      <div className="flex flex-wrap items-center gap-3">
+      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-end">
         <button
           type="button"
           aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
-          className="theme-toggle"
+          className="theme-toggle self-end sm:self-auto"
           onClick={onToggleDarkMode}
         >
           {isDarkMode ? <SunIcon /> : <MoonIcon />}
         </button>
 
-        <Button variant={isEditMode ? 'solid' : 'ghost'} onClick={onToggleEdit}>
+        <Button
+          variant={isEditMode ? 'solid' : 'ghost'}
+          className="w-full sm:w-auto"
+          onClick={onToggleEdit}
+        >
           {isEditMode ? 'Editing On' : 'Enable Edit'}
         </Button>
       </div>

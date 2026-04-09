@@ -29,7 +29,7 @@ export function NotesPanel({
       </div>
 
       {isEditMode ? (
-        <form onSubmit={onSave} className="notes-editor mt-5">
+        <form onSubmit={onSave} className="notes-editor mt-5 w-full">
           <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <strong className="block text-base text-slate-900">
@@ -81,11 +81,13 @@ export function NotesPanel({
             </span>
           </label>
 
-          <div className="mt-4 flex flex-wrap gap-3">
-            <Button type="submit" variant="solid">
+          <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <Button type="submit" variant="solid" className="w-full sm:w-auto">
               {editingNoteId ? 'Update Note' : 'Save Note'}
             </Button>
-            <Button onClick={onReset}>Clear Form</Button>
+            <Button onClick={onReset} className="w-full sm:w-auto">
+              Clear Form
+            </Button>
           </div>
         </form>
       ) : null}
